@@ -1,10 +1,14 @@
-
 import streamlit as st
 from transformers import AutoImageProcessor, AutoModelForImageClassification
 
 # Load model
-processor = AutoImageProcessor.from_pretrained("ttangmo24/vit-base-classification-Eye-Diseases")
-model = AutoModelForImageClassification.from_pretrained("ttangmo24/vit-base-classification-Eye-Diseases")
+st.cache()
+def get_processor(model_name:str):
+    return AutoImageProcessor.from_pretrained(model_name)
+
+st.cache()
+def get_model(model_name:str):
+    return AutoModelForImageClassification.from_pretrained(model_name)
 
 # Streamlit app
 def main():
@@ -27,4 +31,7 @@ def main():
         st.write("Predicted Class:", predicted_class_idx)
 
 if __name__ == "__main__":
+    model_name = "ttangmo24/vit-base-classification-Eye-Diseases"
+    processor = get_processor(model_name)
+    model = get_model(model_name)
     main()
