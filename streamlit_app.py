@@ -1,14 +1,15 @@
 import streamlit as st
-from transformers import AutoImageProcessor, AutoModelForImageClassification
+from PIL import Image
+from transformers import AutoModelForImageClassification, pipeline
 
 # Load model
-st.cache()
-def get_processor(model_name:str):
-    return AutoImageProcessor.from_pretrained(model_name)
+#st.cache()
+#def get_processor(model_name:str):
+#    return AutoImageProcessor.from_pretrained(model_name)
 
 st.cache()
 def get_model(model_name:str):
-    return AutoModelForImageClassification.from_pretrained(model_name)
+    return pipeline("image-classification", model=model_name)
 
 # Streamlit app
 def main():
@@ -19,19 +20,14 @@ def main():
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png"])
 
     if uploaded_file is not None:
-        # Process uploaded image
-        input_image = processor(uploaded_file)
-        
-        # Perform classification
+        st.image(uploaded_file)
+        image = Image.open(uploaded_file)
         with st.spinner('Classifying...'):
-            outputs = model(input_image.pixel_values)
-            predicted_class_idx = outputs.logits.argmax().item()
-
-        # Display results
-        st.write("Predicted Class:", predicted_class_idx)
+            outputs = model(image)
+            # Display results
+            st.write("Predicted Class:", outputs)
 
 if __name__ == "__main__":
     model_name = "ttangmo24/vit-base-classification-Eye-Diseases"
-    processor = get_processor(model_name)
     model = get_model(model_name)
     main()
