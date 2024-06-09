@@ -13,7 +13,7 @@ def get_model(model_name:str):
 
 # Streamlit app
 def main():
-    st.title("Image Classification with Hugging Face")
+    st.title("Image Classification for Eye-Diseases")
     st.write("Upload an image for classification.")
 
     # Image upload
