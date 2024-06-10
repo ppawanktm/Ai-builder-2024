@@ -14,7 +14,7 @@ def add_custom_css():
         """
         <style>
         .dataframe-container {
-            max-width: 1000px;
+            max-width: 2000px;
             max-height: 600px;
         }
         .dataframe table {
