@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 from transformers import AutoModelForImageClassification, pipeline
+import pandas as pd
 
 # Load model
 #st.cache()
