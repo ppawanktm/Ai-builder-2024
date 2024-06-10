@@ -8,10 +8,30 @@ import pandas as pd
 def get_model(model_name: str):
     return pipeline("image-classification", model=model_name)
 
+# Custom CSS to increase the size of the DataFrame container
+def add_custom_css():
+    st.markdown(
+        """
+        <style>
+        .dataframe-container {
+            max-width: 1000px;
+            margin: 0 auto;  /* Center align the container */
+        }
+        .dataframe-container .stDataFrame {
+            font-size: 20px;  /* Increase the font size */
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+
 # Streamlit app
 def main():
     st.title("Image Classification for Eye Diseases")
     st.write("Upload an image for classification.")
+
+    # Add custom CSS
+    add_custom_css()
 
     # Image upload
     uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png"])
@@ -30,9 +50,12 @@ def main():
                 'Score': scores
             })
 
-            # Display the DataFrame
-            st.write("Predicted Classes:")
-            st.dataframe(df)
+            # Display the DataFrame in a container with custom CSS
+            st.markdown('<div class="dataframe-container">', unsafe_allow_html=True)
+            st.dataframe(df.style.set_properties(**{
+                'text-align': 'left'
+            }))
+            st.markdown('</div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     model_name = "ttangmo24/vit-base-classification-Eye-Diseases"
