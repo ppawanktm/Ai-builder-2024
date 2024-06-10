@@ -26,7 +26,11 @@ def main():
             outputs = model(image)
             # Display results
             st.write("Predicted Class:", outputs)
-            st.write(label)
+            st.title("Here are the five most likely bird species")
+            df = pd.DataFrame(data=np.zeros((5, 2)),
+                      columns=['Species', 'Confidence Level'],
+                      index=np.linspace(1, 5, 5, dtype=int))
+
             
 
 if __name__ == "__main__":
