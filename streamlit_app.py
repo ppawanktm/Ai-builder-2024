@@ -1,20 +1,16 @@
 import streamlit as st
 from PIL import Image
-from transformers import AutoModelForImageClassification, pipeline
+from transformers import pipeline
 import pandas as pd
 
 # Load model
-#st.cache()
-#def get_processor(model_name:str):
-#    return AutoImageProcessor.from_pretrained(model_name)
-
-st.cache()
-def get_model(model_name:str):
+@st.cache_resource
+def get_model(model_name: str):
     return pipeline("image-classification", model=model_name)
 
 # Streamlit app
 def main():
-    st.title("Image Classification for Eye-Diseases")
+    st.title("Image Classification for Eye Diseases")
     st.write("Upload an image for classification.")
 
     # Image upload
@@ -25,17 +21,20 @@ def main():
         image = Image.open(uploaded_file)
         with st.spinner('Classifying...'):
             outputs = model(image)
-            # Display results
-            st.write("Predicted Class:", outputs)
-            st.title("Here are the five most likely bird species")
-            df = pd.DataFrame(data=np.zeros((5, 2)),
-                      columns=['Species', 'Confidence Level'],
-                      index=np.linspace(1, 5, 5, dtype=int))
 
-            
+            # Process the output to get a DataFrame
+            labels = [output['label'] for output in outputs]
+            scores = [output['score'] for output in outputs]
+            df = pd.DataFrame({
+                'Label': labels,
+                'Score': scores
+            })
+
+            # Display the DataFrame
+            st.write("Predicted Classes:")
+            st.dataframe(df)
 
 if __name__ == "__main__":
     model_name = "ttangmo24/vit-base-classification-Eye-Diseases"
     model = get_model(model_name)
     main()
-
