@@ -26,6 +26,8 @@ def main():
             outputs = model(image)
             # Display results
             st.write("Predicted Class:", outputs)
+            st.write(label)
+            
 
 if __name__ == "__main__":
     model_name = "ttangmo24/vit-base-classification-Eye-Diseases"
