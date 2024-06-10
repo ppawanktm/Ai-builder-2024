@@ -15,7 +15,7 @@ def add_custom_css():
         <style>
         .dataframe-container {
             max-width: 2000px;
-            max-height: 600px;
+            max-height: 1000px;
         }
         .dataframe table {
             font-size: 20px;
