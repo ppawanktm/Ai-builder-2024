@@ -14,11 +14,11 @@ def add_custom_css():
         """
         <style>
         .dataframe-container {
-            max-width: 1000px;
+            max-width: 2000px;
             margin: 0 auto;  /* Center align the container */
         }
         .dataframe-container .stDataFrame {
-            font-size: 20px;  /* Increase the font size */
+            font-size: 30px;  /* Increase the font size */
         }
         </style>
         """,
