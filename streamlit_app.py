@@ -32,7 +32,3 @@ if __name__ == "__main__":
     model = get_model(model_name)
     main()
 
-st.title("Here are the five most likely bird species")
-    df = pd.DataFrame(data=np.zeros((5, 2)),
-                      columns=['Species', 'Confidence Level'],
-                      index=np.linspace(1, 5, 5, dtype=int))
