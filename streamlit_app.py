@@ -4,7 +4,7 @@ from transformers import pipeline
 import pandas as pd
 
 # Load model
-@st.cache_resource
+@st.cache(allow_output_mutation=True)
 def get_model(model_name: str):
     return pipeline("image-classification", model=model_name)
 
