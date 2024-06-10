@@ -30,9 +30,12 @@ def main():
                 'Score': scores
             })
 
-            # Display the DataFrame
+            # Display the DataFrame with larger font
             st.write("Predicted Classes:")
-            st.dataframe(df)
+            st.dataframe(df.style.set_properties(**{
+                'font-size': '20pt',
+                'text-align': 'left'
+            }))
 
 if __name__ == "__main__":
     model_name = "ttangmo24/vit-base-classification-Eye-Diseases"
