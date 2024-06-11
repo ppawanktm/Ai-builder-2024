@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 from transformers import pipeline
 import pandas as pd
-import plotly.express as px
+
 
 # Load model
 @st.cache(allow_output_mutation=True)
@@ -35,11 +35,10 @@ def main():
             st.write("Predicted Classes:")
             st.dataframe(df)
 
-            # Display the scores in a custom colored bar chart
+            # Display the scores in a bar chart
             st.write("Classification Scores:")
-            fig = px.bar(df, x='Label', y='Score', title="Classification Scores",
-                         color='Score', color_continuous_scale='Viridis')
-            st.plotly_chart(fig)
+            st.bar_chart(df.set_index('Label'))
+
 
             # Display the top score and corresponding label with increased font size and bold
             top_score_idx = df['Score'].idxmax()
