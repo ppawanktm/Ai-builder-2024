@@ -36,10 +36,10 @@ def main():
 
             # Display the scores in a bar chart
             st.write("Classification Scores Chart :")
-            st.bar_chart(df.set_index('Label'))
+            st.bar_chart(df.set_index('type'))
 
             top_score_idx = df['Score'].idxmax()
-            top_label = df.loc[top_score_idx, 'Label']
+            top_label = df.loc[top_score_idx, 'type']
             top_score = df.loc[top_score_idx, 'Score']
             st.markdown(f"<h2><b>Top Prediction is : {top_label} with a score of {top_score:.2f}</b></h2>", unsafe_allow_html=True)
 
