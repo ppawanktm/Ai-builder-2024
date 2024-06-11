@@ -15,7 +15,7 @@ def main():
     st.write("Upload an image for classification.")
 
     # Image upload
-    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png"])
+    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png","jpeg"])
 
     if uploaded_file is not None:
         st.image(uploaded_file)
@@ -36,7 +36,7 @@ def main():
             st.dataframe(df)
 
             # Display the scores in a bar chart
-            st.write("Classification Scores:")
+            st.write("Classification Scores chart:")
             st.bar_chart(df.set_index('Label'))
 
 
