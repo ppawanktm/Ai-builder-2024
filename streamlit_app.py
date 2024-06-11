@@ -26,7 +26,7 @@ def main():
             labels = [output['label'] for output in outputs]
             scores = [output['score'] for output in outputs]
             df = pd.DataFrame({
-                'Label': labels,
+                'tyep': labels,
                 'Score': scores
             })
 
@@ -35,13 +35,13 @@ def main():
             st.dataframe(df)
 
             # Display the scores in a bar chart
-            st.write("Classification Scores:")
+            st.write("Classification Scores Chart :")
             st.bar_chart(df.set_index('Label'))
 
             top_score_idx = df['Score'].idxmax()
             top_label = df.loc[top_score_idx, 'Label']
             top_score = df.loc[top_score_idx, 'Score']
-            st.markdown(f"<h2><b>Top Prediction: {top_label} with a score of {top_score:.2f}</b></h2>", unsafe_allow_html=True)
+            st.markdown(f"<h2><b>Top Prediction is : "{top_label}" with a score of {top_score:.2f}</b></h2>", unsafe_allow_html=True)
 
             
 
