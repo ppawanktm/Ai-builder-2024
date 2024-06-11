@@ -47,6 +47,6 @@ def main():
             st.markdown(f"<h2><b>Top Prediction: {top_label} with a score of {top_score:.2f}</b></h2>", unsafe_allow_html=True)
 
 if __name__ == "__main__":
-    model_name = "ttangmo24/vit-base-classification-Eye-Diseases"
+    model_name = "ttangmo24/vit-base-classification-Eye-Diseases-New02"
     model = get_model(model_name)
     main()
