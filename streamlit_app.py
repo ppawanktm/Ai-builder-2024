@@ -38,6 +38,13 @@ def main():
             st.write("Classification Scores:")
             st.bar_chart(df.set_index('Label'))
 
+            top_score_idx = df['Score'].idxmax()
+            top_label = df.loc[top_score_idx, 'Label']
+            top_score = df.loc[top_score_idx, 'Score']
+            st.write(f"Top Prediction: {top_label} with a score of {top_score:.2f}")
+
+            
+
 if __name__ == "__main__":
     model_name = "ttangmo24/vit-base-classification-Eye-Diseases"
     model = get_model(model_name)
