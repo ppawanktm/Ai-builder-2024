@@ -34,6 +34,10 @@ def main():
             st.write("Predicted Classes:")
             st.dataframe(df)
 
+            # Display the scores in a bar chart
+            st.write("Classification Scores:")
+            st.bar_chart(df.set_index('Label'))
+
 if __name__ == "__main__":
     model_name = "ttangmo24/vit-base-classification-Eye-Diseases"
     model = get_model(model_name)
