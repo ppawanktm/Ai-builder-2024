@@ -5,7 +5,7 @@ import pandas as pd
 
 
 # Load model
-@st.cache(allow_output_mutation=True)
+@st.cache_resource(allow_output_mutation=True)
 def get_model(model_name: str):
     return pipeline("image-classification", model=model_name)
 
